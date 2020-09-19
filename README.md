@@ -9,3 +9,10 @@ BASE_URL = "https://api.stackexchange.com/2.2/"
 
 
 "/users?order=desc&sort=reputation&site=stackoverflow" ->get users
+
+
+/users/{userId}/questions?order=desc&sort=votes&site=stackoverflow ->get questionByUser
+
+
+/users/{userId}/favorites?order=desc&sort=votes&site=stackoverflow ->getFavoritesByUser
+
