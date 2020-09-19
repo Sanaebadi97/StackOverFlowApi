@@ -18,12 +18,16 @@ android {
     }
 
     buildTypes {
-        release {
-            minifyEnabled = false
-            proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
+        getByName("release") {
+            isMinifyEnabled = false
+            proguardFiles(
+                getDefaultProguardFile("proguard-android-optimize.txt"),
+                "proguard-rules.pro"
+            )
         }
     }
 }
+
 
 dependencies {
     implementation("org.jetbrains.kotlin:kotlin-stdlib:1.4.10")
