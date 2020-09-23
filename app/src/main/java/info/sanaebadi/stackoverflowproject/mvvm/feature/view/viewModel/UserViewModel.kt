@@ -8,7 +8,7 @@ import info.sanaebadi.domain.model.user.UserListModel
 import info.sanaebadi.stackoverflowproject.mvvm.feature.view.viewModel.base.MutableViewModel
 import javax.inject.Inject
 
-class UseViewModel @Inject constructor(
+class UserViewModel @Inject constructor(
     private val userUseCase: UserUseCase
 ) : ViewModel() {
 
