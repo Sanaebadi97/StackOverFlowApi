@@ -5,7 +5,7 @@ import com.squareup.moshi.JsonClass
 import info.sanaebadi.data.entity.base.BaseEntity
 
 @JsonClass(generateAdapter = true)
-data class User(
+data class UserEntity(
     @field:Json(name ="user_id")  var userId: Long,
     @field:Json(name ="display_name") var displayName: String,
     @field:Json(name ="reputation") var reputation: Long,

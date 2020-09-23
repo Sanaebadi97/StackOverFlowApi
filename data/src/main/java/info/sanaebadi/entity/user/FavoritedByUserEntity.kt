@@ -4,7 +4,7 @@ import com.squareup.moshi.JsonClass
 import info.sanaebadi.data.entity.base.BaseEntity
 
 @JsonClass(generateAdapter = true)
-data class FavoritedByUser(
+data class FavoritedByUserEntity(
      var userId: Long,
     var questionIds: List<Long>
 ): BaseEntity {

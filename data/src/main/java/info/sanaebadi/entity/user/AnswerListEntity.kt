@@ -4,4 +4,4 @@ import com.squareup.moshi.JsonClass
 
 
 @JsonClass(generateAdapter = true)
-class AnswerList(val items: List<Answer>)
+class AnswerListEntity(val items: List<AnswerEntity>)
