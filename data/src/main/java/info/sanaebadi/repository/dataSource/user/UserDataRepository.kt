@@ -6,7 +6,9 @@ import info.sanaebadi.domain.repository.UserRepository
 import info.sanaebadi.mapper.user.UserMapper
 import io.reactivex.Single
 import javax.inject.Inject
+import javax.inject.Singleton
 
+@Singleton
 class UserDataRepository @Inject constructor(
     private val userDataSourceFactory: UserDataSourceFactory,
     private val userMapper: UserMapper
