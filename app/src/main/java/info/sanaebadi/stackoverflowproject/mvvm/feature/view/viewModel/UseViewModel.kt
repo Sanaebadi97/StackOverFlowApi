@@ -5,6 +5,7 @@ import androidx.lifecycle.ViewModel
 import info.sanaebadi.domain.interactor.base.BaseSingleObserver
 import info.sanaebadi.domain.interactor.user.UserUseCase
 import info.sanaebadi.domain.model.user.UserListModel
+import info.sanaebadi.stackoverflowproject.mvvm.feature.view.viewModel.base.MutableViewModel
 import javax.inject.Inject
 
 class UseViewModel @Inject constructor(

@@ -1,4 +1,4 @@
-package info.sanaebadi.stackoverflowproject.mvvm.feature.view.viewModel
+package info.sanaebadi.stackoverflowproject.mvvm.feature.view.viewModel.base
 
 
 open class MutableViewModel<T> {
