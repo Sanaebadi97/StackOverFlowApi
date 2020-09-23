@@ -3,20 +3,17 @@ package info.sanaebadi.stackoverflowproject.di
 import android.content.Context
 import dagger.Module
 import dagger.Provides
-import info.sanaebadi.data.executor.JobExecutor
-import info.sanaebadi.data.repository.dataSource.place.PlaceDataRepository
 import info.sanaebadi.domain.executor.PostExecutionThread
 import info.sanaebadi.domain.executor.ThreadExecutor
 import info.sanaebadi.domain.repository.UserRepository
-import info.sanaebadi.domain.repository.place.places.PlaceRepository
 import info.sanaebadi.executor.JobExecutor
-import info.sanaebadi.placeapp.executors.UIThread
-import info.sanaebadi.placeapp.global.PlaceApplication
-import info.sanaebadi.stackoverflowproject.util.AppSchedulerProvider
-import info.sanaebadi.stackoverflowproject.util.SchedulerProvider
 import info.sanaebadi.repository.dataSource.user.UserDataRepository
 import info.sanaebadi.stackoverflowproject.executors.UIThread
 import info.sanaebadi.stackoverflowproject.global.StackApplication
+import info.sanaebadi.stackoverflowproject.util.AppSchedulerProvider
+import info.sanaebadi.stackoverflowproject.util.ConnectionHelper
+import info.sanaebadi.stackoverflowproject.util.PreferencesHelper
+import info.sanaebadi.stackoverflowproject.util.SchedulerProvider
 import javax.inject.Singleton
 
 @Module
@@ -49,13 +46,13 @@ class ApplicationModule {
     }
 
 
-//    @Provides
-//    @Singleton
-//    fun provideConnectionHelper(context: Context) = ConnectionHelper(context)
-//
-//    @Provides
-//    @Singleton
-//    fun providePreferencesHelper(context: Context) = PreferencesHelper(context)
+    @Provides
+    @Singleton
+    fun provideConnectionHelper(context: Context) = ConnectionHelper(context)
+
+    @Provides
+    @Singleton
+    fun providePreferencesHelper(context: Context) = PreferencesHelper(context)
 
 
     @Provides
