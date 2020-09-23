@@ -20,5 +20,8 @@ BASE_URL = "https://api.stackexchange.com/2.2/"
 
 /users/{userId}/favorites?order=desc&sort=votes&site=stackoverflow ->getFavoritesByUser
 
+
 /users/{userId}/answers?order=desc&sort=votes&site=stackoverflow" ->getAnswersByUser
+
+
 
