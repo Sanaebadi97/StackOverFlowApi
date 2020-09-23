@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- margins -->
+    <dimen name="default_margin_octant">2dp</dimen>
+    <dimen name="default_margin_quarter">4dp</dimen>
+    <dimen name="default_margin_half">8dp</dimen>
+    <dimen name="default_margin_three_fourth">12dp</dimen>
+    <dimen name="default_margin">16dp</dimen>
+    <dimen name="default_margin_five_fourth">20dp</dimen>
+    <dimen name="default_margin_two_thirds">24dp</dimen>
+    <dimen name="default_margin_double">32dp</dimen>
+    <dimen name="default_margin_triple">48dp</dimen>
+    <dimen name="default_margin_quadruple">64dp</dimen>
+
+    <!-- text sizes -->
+    <dimen name="text_size_tiny">8sp</dimen>
+    <dimen name="text_size_very_small">10sp</dimen>
+    <dimen name="text_size_small">12sp</dimen>
+    <dimen name="text_size_normal">14sp</dimen>
+    <dimen name="text_size_medium">16sp</dimen>
+    <dimen name="text_size_large">18sp</dimen>
+    <dimen name="text_size_very_large">20sp</dimen>
+    <dimen name="text_size_huge">20sp</dimen>default_margin_half
+    <dimen name="text_size_middle_huge">24sp</dimen>
+    <dimen name="text_size_very_huge">28sp</dimen>
+    <dimen name="icon_size">50dp</dimen>
+
+</resources>
