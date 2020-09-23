@@ -12,8 +12,8 @@ class UserDataRepository @Inject constructor(
     private val userMapper: UserMapper
 ) : UserRepository {
 
-    override fun getUsers(page: Int, forced: Boolean): Single<UserListModel> {
-        return userDataSourceFactory.create(CacheStrategy.ONLINE_FIRST).getUsers(page, forced)
+    override fun getUsers(page: Int): Single<UserListModel> {
+        return userDataSourceFactory.create(CacheStrategy.ONLINE_FIRST).getUsers(page)
             .map { data -> userMapper.toDomain(data) }
     }
 }
