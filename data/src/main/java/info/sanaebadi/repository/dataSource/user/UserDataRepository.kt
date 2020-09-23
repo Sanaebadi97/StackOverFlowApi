@@ -1,6 +1,6 @@
 package info.sanaebadi.repository.dataSource.user
 
-import info.sanaebadi.domain.model.user.UserListModel
+import info.sanaebadi.domain.model.user.User
 import info.sanaebadi.domain.repository.CacheStrategy
 import info.sanaebadi.domain.repository.UserRepository
 import info.sanaebadi.mapper.user.UserMapper
@@ -14,7 +14,7 @@ class UserDataRepository @Inject constructor(
     private val userMapper: UserMapper
 ) : UserRepository {
 
-    override fun getUsers(page: Int): Single<UserListModel> {
+    override fun getUsers(page: Int): Single<User> {
         return userDataSourceFactory.create(CacheStrategy.ONLINE_FIRST).getUsers(page)
             .map { data -> userMapper.toDomain(data) }
     }

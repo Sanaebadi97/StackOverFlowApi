@@ -1,11 +1,11 @@
 package info.sanaebadi.stackoverflowproject.mvvm.feature.view.viewModel.base
 
-import info.sanaebadi.domain.model.user.User
+import info.sanaebadi.stackoverflowproject.model.user.UserPre
 
 interface UserListView {
     fun showLoading()
     fun hideLoading()
-    fun addUsersToList(users: List<User>)
+    fun addUsersToList(users: List<UserPre>)
     fun showEmptyListError()
     fun hideEmptyListError()
     fun showToastError()

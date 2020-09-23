@@ -1,3 +1,5 @@
 package info.sanaebadi.domain.model.user
 
-class AnswerList(val items: List<Answer>)
+import info.sanaebadi.domain.model.base.BaseDomainModel
+
+class AnswerList(val items: List<Answer>) :BaseDomainModel

@@ -6,6 +6,6 @@ import retrofit2.http.GET
 import retrofit2.http.Path
 
 interface QuestionApiRetrofitService {
-    @GET("/questions/{questionIds}?order=desc&sort=activity&site=stackoverflow")
+    @GET("questions/{questionIds}?order=desc&sort=activity&site=stackoverflow")
     fun getQuestionsById(@Path("questionIds") questionId: String): Single<QuestionListEntity>
 }
