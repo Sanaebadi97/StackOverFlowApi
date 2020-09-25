@@ -84,10 +84,10 @@ class UserListFragment : DaggerFragment(), UserListView {
                 else -> {
                     hideLoading()
                     hideEmptyListError()
-                    val data: UserListModelPre? = mutableViewModelModel.getData()
+                    val data = mutableViewModelModel.getData()
 
 
-                    if (data?.items?.size != 0) {
+                    if (data. != 0) {
                         initAdapter()
                     } else {
                         showEmptyListError()

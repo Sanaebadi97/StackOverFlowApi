@@ -28,7 +28,7 @@ class UserViewModel @Inject constructor(
                 super.onSuccess(t)
                 value.setLoading(false)
                 value.setThrowable(null)
-                value.setData(userPresentationMapper.mtoPresentation(t.displayName))
+                value.setData(t)
                 userList.postValue(value)
 
             }
