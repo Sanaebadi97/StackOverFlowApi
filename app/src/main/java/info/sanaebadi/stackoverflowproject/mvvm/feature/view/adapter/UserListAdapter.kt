@@ -7,7 +7,6 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import info.sanaebadi.stackoverflowproject.databinding.ListItemUserBinding
 import info.sanaebadi.stackoverflowproject.model.user.UserListModelPre
-import info.sanaebadi.stackoverflowproject.model.user.UserPre
 import info.sanaebadi.stackoverflowproject.util.loadUrl
 
 class UserListAdapter(
