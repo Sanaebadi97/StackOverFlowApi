@@ -5,13 +5,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import info.sanaebadi.stackoverflowproject.model.user.UserPre
 import info.sanaebadi.stackoverflowproject.databinding.ListItemUserBinding
+import info.sanaebadi.stackoverflowproject.model.user.UserListModelPre
 import info.sanaebadi.stackoverflowproject.util.loadUrl
 
 class UserListAdapter(
-    private val users: MutableList<UserPre>,
-    private val listener: (UserPre, View) -> Unit
+    private val users: MutableList<UserListModelPre>,
+    private val listener: (UserListModelPre, View) -> Unit
 
 ) : RecyclerView.Adapter<UserListAdapter.UserViewHolder>() {
 
@@ -27,7 +27,7 @@ class UserListAdapter(
 
     }
 
-    fun addUsers(newUsers: List<UserPre>) {
+    fun addUsers(newUsers: List<UserListModelPre>) {
         users.addAll(newUsers)
         notifyDataSetChanged()
     }
@@ -39,12 +39,13 @@ class UserListAdapter(
     open class UserViewHolder(private val binding: ListItemUserBinding) :
         RecyclerView.ViewHolder(binding.root) {
         @SuppressLint("NewApi", "SetTextI18n")
-        fun bind(user: UserPre, listener: (UserPre, View) -> Unit) = with(itemView) {
+        fun bind(user: UserListModelPre, listener: (UserListModelPre, View) -> Unit) =
+            with(itemView) {
 
-            binding.textUserName.text = user.displayName
-            binding.textUserReputation.text = "${user.reputation} points"
-            binding.imageUserAvatar.loadUrl(user.profileImage)
+                binding.textUserName.text = user.displayName
+                binding.textUserReputation.text = "${user.reputation} points"
+                binding.imageUserAvatar.loadUrl(user.profileImage)
 
-        }
+            }
     }
 }
