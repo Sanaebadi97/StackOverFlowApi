@@ -23,7 +23,7 @@ open class MutableViewModel<T> {
         this.loading = loading
     }
 
-    fun setData(data: T) {
+    fun setData(data: T?) {
         this.data = data
     }
 
