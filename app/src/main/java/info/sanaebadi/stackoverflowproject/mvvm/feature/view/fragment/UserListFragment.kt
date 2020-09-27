@@ -12,6 +12,7 @@ import dagger.android.support.DaggerFragment
 import info.sanaebadi.stackoverflowproject.R
 import info.sanaebadi.stackoverflowproject.databinding.FragmentUserListBinding
 import info.sanaebadi.stackoverflowproject.model.user.UserListModelPresentation
+import info.sanaebadi.stackoverflowproject.model.user.UserPresentation
 import info.sanaebadi.stackoverflowproject.mvvm.feature.view.adapter.UserListAdapter
 import info.sanaebadi.stackoverflowproject.mvvm.feature.view.viewModel.UserViewModel
 import info.sanaebadi.stackoverflowproject.mvvm.feature.view.viewModel.base.UserListView
@@ -35,7 +36,7 @@ class UserListFragment : DaggerFragment(), UserListView {
 
 
     private val adapter by lazy {
-        val userList = mutableListOf<UserListModelPresentation>()
+        val userList = mutableListOf<UserPresentation>()
         UserListAdapter(userList) { user, view ->
             // openDetailFragment(user, view)
         }
@@ -70,23 +71,23 @@ class UserListFragment : DaggerFragment(), UserListView {
 
             when {
                 mutableViewModelModel.isLoading() -> {
-                //    showLoading()
+                    showLoading()
                     hideEmptyListError()
                 }
                 mutableViewModelModel.getThrowable() != null -> {
-                //    hideLoading()
+                    hideLoading()
                     hideEmptyListError()
                     mutableViewModelModel.getThrowable()!!.message?.let {
                         showToastError()
                     }
                 }
                 else -> {
-                 //   hideLoading()
+                    hideLoading()
                     hideEmptyListError()
-                    val data = mutableViewModelModel.getData()
+                    val data = mutableViewModelModel.getData() as UserListModelPresentation
 
 
-                    if (data?.items?.size != 0) {
+                    if (data.items.isNotEmpty()) {
                         initAdapter()
                     } else {
                         showEmptyListError()
@@ -110,7 +111,7 @@ class UserListFragment : DaggerFragment(), UserListView {
         binding?.swipeRefreshLayout?.isRefreshing = false
     }
 
-    override fun addUsersToList(users: List<UserListModelPresentation>) {
+    override fun addUsersToList(users: List<UserPresentation>) {
         val adapter = binding?.recyclerUser?.adapter as UserListAdapter
         adapter.addUsers(users)
     }
