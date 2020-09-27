@@ -8,10 +8,11 @@ import android.widget.Toast
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import dagger.android.support.DaggerFragment
 import info.sanaebadi.stackoverflowproject.R
 import info.sanaebadi.stackoverflowproject.databinding.FragmentUserListBinding
-import info.sanaebadi.stackoverflowproject.model.user.UserListModelPre
+import info.sanaebadi.stackoverflowproject.model.user.UserPresentation
 import info.sanaebadi.stackoverflowproject.mvvm.feature.view.adapter.UserListAdapter
 import info.sanaebadi.stackoverflowproject.mvvm.feature.view.viewModel.UserViewModel
 import info.sanaebadi.stackoverflowproject.mvvm.feature.view.viewModel.base.UserListView
@@ -33,14 +34,6 @@ class UserListFragment : DaggerFragment(), UserListView {
         ViewModelProvider(requireActivity(), viewModelFactory).get(UserViewModel::class.java)
     }
 
-
-    private val adapter by lazy {
-        val userList = mutableListOf<UserListModelPre>()
-        UserListAdapter(userList) { user, view ->
-            // openDetailFragment(user, view)
-        }
-    }
-
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -53,15 +46,34 @@ class UserListFragment : DaggerFragment(), UserListView {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         viewModel.getUserList(1)
+
         setUpObserver()
+
     }
 
-
-    private fun initAdapter() {
-        layoutManager = LinearLayoutManager(context)
+    private fun setUpRecyclerview() {
+        val layoutManager = LinearLayoutManager(context, RecyclerView.VERTICAL, false)
         binding?.recyclerUser?.layoutManager = layoutManager
         binding?.recyclerUser?.setHasFixedSize(true)
+
+//        binding?.recyclerUser?.addOnScrollListener(object : RecyclerView.OnScrollListener() {
+//
+//            override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
+//                super.onScrolled(recyclerView, dx, dy)
+//
+//                val lastVisibleItemPosition =
+//                    layoutManager.findFirstVisibleItemPosition() + layoutManager.childCount
+//                val totalItemCount = layoutManager.itemCount
+//                viewModel.onScrollChanged(lastVisibleItemPosition, totalItemCount)
+//            }
+//        })
+    }
+
+    private fun initAdapter(data: MutableList<UserPresentation>) {
+        setUpRecyclerview()
+        val adapter = UserListAdapter(data)
         binding?.recyclerUser?.adapter = adapter
+
 
     }
 
@@ -86,8 +98,8 @@ class UserListFragment : DaggerFragment(), UserListView {
                     val data = mutableViewModelModel.getData()
 
 
-                    if (data?.items?.size != 0) {
-                        initAdapter()
+                    if (data?.items?.isNotEmpty()!!) {
+                        initAdapter(data.items)
                     } else {
                         showEmptyListError()
                     }
@@ -103,14 +115,14 @@ class UserListFragment : DaggerFragment(), UserListView {
 
 
     override fun showLoading() {
-        binding?.swipeRefreshLayout?.isRefreshing = true
+        binding?.swipeRefreshLayout?.visibility = View.VISIBLE
     }
 
     override fun hideLoading() {
-        binding?.swipeRefreshLayout?.isRefreshing = false
+        binding?.swipeRefreshLayout?.visibility = View.GONE
     }
 
-    override fun addUsersToList(users: List<UserListModelPre>) {
+    override fun addUsersToList(users: List<UserPresentation>) {
         val adapter = binding?.recyclerUser?.adapter as UserListAdapter
         adapter.addUsers(users)
     }
@@ -127,6 +139,13 @@ class UserListFragment : DaggerFragment(), UserListView {
         Toast.makeText(context, getString(R.string.error_fetching_data), Toast.LENGTH_SHORT).show()
 
     override fun clearList() {
-        adapter.clearUsers()
+        //  adapter.clearUsers()
+    }
+
+    private fun openDetailFragment() {
+//        val detailsFragment = DetailsFragment.newInstance(user)
+//        (activity as MainActivity).addDetailsFragmentWithTransition(detailsFragment, transitioningView)
+        Toast.makeText(context, getString(R.string.error_fetching_data), Toast.LENGTH_SHORT).show()
+
     }
 }

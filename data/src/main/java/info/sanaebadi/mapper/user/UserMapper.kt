@@ -15,22 +15,16 @@ class UserMapper @Inject constructor() : DataLayerMapper<UserEntity, User> {
     fun toDomain(userListModelEntity: UserListModelEntity): UserListModel? {
         val userList: MutableList<User> = ArrayList<User>()
 
-        for (user in userListModelEntity.items) {
-            toDomain(user)?.let { userList.add(it) }
+        for (user: UserEntity in userListModelEntity.items) {
+            userList.add(toDomain(user)!!)
         }
         return UserListModel(userList)
     }
 
 
     override fun toDomain(e: UserEntity?): User? {
-        return e?.userId?.let {
-            User(
-                it,
-                e.displayName,
-                e.reputation,
-                e.profileImage
-            )
-        }
+        return User(e?.userId!!, e.displayName, e.reputation, e.profileImage)
+
     }
 
     override fun toEntity(d: User?): UserEntity? {

@@ -3,6 +3,7 @@ package info.sanaebadi.networking.base
 import info.sanaebadi.data.BuildConfig
 import io.reactivex.schedulers.Schedulers
 import okhttp3.OkHttpClient
+import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.moshi.MoshiConverterFactory
@@ -26,11 +27,15 @@ abstract class AbstractService<S>(
 
 
     private fun createService(baseUrl: String): S {
+        val interceptor = HttpLoggingInterceptor()
+        interceptor.level = HttpLoggingInterceptor.Level.BODY
 
 
         val client = OkHttpClient.Builder()
             .connectTimeout(TIME_OUT_MIL_SECS, TimeUnit.SECONDS)
+            .addInterceptor(interceptor)
             .build()
+        
         val retrofitBuilder = Retrofit.Builder().baseUrl(baseUrl)
             .addConverterFactory(ScalarsConverterFactory.create())
             .addConverterFactory(MoshiConverterFactory.create())

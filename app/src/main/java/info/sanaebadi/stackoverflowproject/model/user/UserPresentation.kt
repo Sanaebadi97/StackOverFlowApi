@@ -3,7 +3,7 @@ package info.sanaebadi.stackoverflowproject.model.user
 import info.sanaebadi.stackoverflowproject.model.base.PresentationModel
 
 
-data class UserPre(
+data class UserPresentation(
     var userId: Long,
     var displayName: String,
     var reputation: Long,

@@ -4,5 +4,5 @@ import info.sanaebadi.entity.user.UserListModelEntity
 import io.reactivex.Single
 
 interface UserDataSource {
-    fun getUsers(page: Int = 1): Single<UserListModelEntity>
+    fun getUsers(page: Int): Single<UserListModelEntity>
 }
