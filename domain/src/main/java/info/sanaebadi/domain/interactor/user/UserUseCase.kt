@@ -15,7 +15,7 @@ class UserUseCase @Inject constructor(
 ) :
     SingleUseCase<UserListModel, Int>(threadExecutor, postExecutionThread) {
 
-    override fun buildUseCaseSingle(params: Int): Single<UserListModel> {
-        return userRepository.getUsers(params)
+    override fun buildUseCaseSingle(page: Int): Single<UserListModel> {
+        return userRepository.getUsers(page)
     }
 }

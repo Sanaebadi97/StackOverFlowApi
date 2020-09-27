@@ -11,7 +11,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import dagger.android.support.DaggerFragment
 import info.sanaebadi.stackoverflowproject.R
 import info.sanaebadi.stackoverflowproject.databinding.FragmentUserListBinding
-import info.sanaebadi.stackoverflowproject.model.user.UserListModelPre
+import info.sanaebadi.stackoverflowproject.model.user.UserListModelPresentation
 import info.sanaebadi.stackoverflowproject.mvvm.feature.view.adapter.UserListAdapter
 import info.sanaebadi.stackoverflowproject.mvvm.feature.view.viewModel.UserViewModel
 import info.sanaebadi.stackoverflowproject.mvvm.feature.view.viewModel.base.UserListView
@@ -35,7 +35,7 @@ class UserListFragment : DaggerFragment(), UserListView {
 
 
     private val adapter by lazy {
-        val userList = mutableListOf<UserListModelPre>()
+        val userList = mutableListOf<UserListModelPresentation>()
         UserListAdapter(userList) { user, view ->
             // openDetailFragment(user, view)
         }
@@ -70,18 +70,18 @@ class UserListFragment : DaggerFragment(), UserListView {
 
             when {
                 mutableViewModelModel.isLoading() -> {
-                    showLoading()
+                //    showLoading()
                     hideEmptyListError()
                 }
                 mutableViewModelModel.getThrowable() != null -> {
-                    hideLoading()
+                //    hideLoading()
                     hideEmptyListError()
                     mutableViewModelModel.getThrowable()!!.message?.let {
                         showToastError()
                     }
                 }
                 else -> {
-                    hideLoading()
+                 //   hideLoading()
                     hideEmptyListError()
                     val data = mutableViewModelModel.getData()
 
@@ -110,7 +110,7 @@ class UserListFragment : DaggerFragment(), UserListView {
         binding?.swipeRefreshLayout?.isRefreshing = false
     }
 
-    override fun addUsersToList(users: List<UserListModelPre>) {
+    override fun addUsersToList(users: List<UserListModelPresentation>) {
         val adapter = binding?.recyclerUser?.adapter as UserListAdapter
         adapter.addUsers(users)
     }

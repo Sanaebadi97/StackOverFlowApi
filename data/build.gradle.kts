@@ -73,5 +73,6 @@ plugins {
         androidTestImplementation(TestLibraries.espresso)
         testImplementation(TestLibraries.mockitoKotlin)
 
+        implementation("com.squareup.okhttp3:logging-interceptor:4.8.1")
 
 }
