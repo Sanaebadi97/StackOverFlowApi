@@ -9,5 +9,13 @@
         android:id="@+id/userListFragment"
         android:name="info.sanaebadi.stackoverflowproject.mvvm.feature.view.fragment.UserListFragment"
         android:label="fragment_user_list"
-        tools:layout="@layout/fragment_user_list" />
+        tools:layout="@layout/fragment_user_list" >
+        <action
+            android:id="@+id/action_userListFragment_to_detailsFragment"
+            app:destination="@id/detailsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/detailsFragment"
+        android:name="info.sanaebadi.stackoverflowproject.mvvm.feature.view.fragment.DetailsFragment"
+        android:label="DetailsFragment" />
 </navigation>
