@@ -10,6 +10,8 @@ import info.sanaebadi.stackoverflowproject.model.user.UserListModelPresentation
 import info.sanaebadi.stackoverflowproject.mvvm.feature.view.viewModel.base.MutableViewModel
 import javax.inject.Inject
 
+private const val INFINITE_LOADING_OFFSET = 5
+
 class UserViewModel @Inject constructor(
     private val userUseCase: UserUseCase,
     private val mapper: UserMapperPresentation
@@ -17,7 +19,7 @@ class UserViewModel @Inject constructor(
 
     var userList = MutableLiveData<MutableViewModel<UserListModelPresentation>>()
 
-    fun getUserList(page: Int) {
+    fun getUserList(page: Int = 1) {
         val value = MutableViewModel<UserListModelPresentation>()
         value.setLoading(true)
         userList.postValue(value)
@@ -42,5 +44,12 @@ class UserViewModel @Inject constructor(
             }
 
         }, page)
+    }
+
+    fun onScrollChanged(lastVisibleItemPosition: Int, totalItemCount: Int) {
+            if (lastVisibleItemPosition >= totalItemCount - INFINITE_LOADING_OFFSET) {
+                getUserList()
+            }
+
     }
 }
