@@ -1,6 +1,8 @@
 package info.sanaebadi.domain.interactor.user
 
 import info.sanaebadi.domain.model.UserDetailsModel
+import info.sanaebadi.domain.model.details.AnswerViewModel
+import info.sanaebadi.domain.model.details.QuestionViewModel
 import info.sanaebadi.domain.model.user.Answer
 import info.sanaebadi.domain.model.user.Question
 import info.sanaebadi.domain.repository.DetailsRepository
@@ -11,16 +13,15 @@ class DetailsUseCase @Inject constructor(private val detailsRepository: DetailsR
 
     fun execute(userId: Long): Single<UserDetailsModel> {
         return Single.zip(
-            detailsRepository.getQuestionsByUser(userId)
-                    getTitlesForAnswers (userId),
+            detailsRepository.getQuestionsByUser(userId),
+            getTitlesForAnswers(userId),
             detailsRepository.getFavoritesByUser(userId),
-            Function3<List<Question>, List<Answer>, List<Question>, UserDetailsModel>
             { questions, answers, favorites ->
                 createDetailsModel(questions, answers, favorites)
             })
     }
 
-    private fun getTitlesForAnswers(userId: Long): Single<List<Answer>> {
+    private fun getTitlesForAnswers(userId: Long): Single<List<AnswerViewModel>> {
         return detailsRepository.getAnswersByUser(userId)
             .flatMap { answers: List<Answer> ->
                 mapAnswersToAnswerViewModels(answers, userId)
@@ -30,7 +31,7 @@ class DetailsUseCase @Inject constructor(private val detailsRepository: DetailsR
     private fun mapAnswersToAnswerViewModels(
         answers: List<Answer>,
         userId: Long
-    ): Single<List<Answer>> {
+    ): Single<List<AnswerViewModel>> {
         val ids = answers
             .map { it.questionId }
 
@@ -45,22 +46,38 @@ class DetailsUseCase @Inject constructor(private val detailsRepository: DetailsR
     private fun createAnswerViewModels(
         answers: List<Answer>,
         questions: List<Question>
-    ): List<Answer> {
+    ): List<AnswerViewModel> {
         return answers.map { (answerId, questionId, score, accepted) ->
             val question = questions.find { it.questionId == questionId }
-            Answer(answerId, score, accepted, question?.title ?: "Unknown", null)
+            AnswerViewModel(answerId, score, accepted, question?.title ?: "Unknown")
         }
     }
 
-    private fun createPlaceDataModel(
+    private fun createDetailsModel(
         questions: List<Question>,
-        answers: List<Answer>,
+        answers: List<AnswerViewModel>,
         favorites: List<Question>
     ): UserDetailsModel {
         val questionViewModels =
-            questions.map { Question(it.viewCount, it.score, it.title, it.link, it.questionId) }
+            questions.map {
+                QuestionViewModel(
+                    it.viewCount,
+                    it.score,
+                    it.title,
+                    it.link,
+                    it.questionId
+                )
+            }
         val favoriteViewModels =
-            favorites.map { Question(it.viewCount, it.score, it.title, it.link, it.questionId) }
+            favorites.map {
+                QuestionViewModel(
+                    it.viewCount,
+                    it.score,
+                    it.title,
+                    it.link,
+                    it.questionId
+                )
+            }
 
         return UserDetailsModel(questionViewModels, answers, favoriteViewModels)
     }
