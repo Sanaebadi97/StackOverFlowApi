@@ -12,13 +12,14 @@ import javax.inject.Singleton
 
 @Singleton
 class QuestionByIdMapper @Inject constructor() : DataLayerMapper<QuestionEntity, Question> {
-    fun toDomain(questionListEntity: QuestionListEntity): QuestionList? {
+
+    fun toDomain(questionListEntity: QuestionListEntity): List<Question>? {
         val quesList: MutableList<Question> = ArrayList<Question>()
 
         for (question: QuestionEntity in questionListEntity.items) {
             quesList.add(toDomain(question))
         }
-        return QuestionList(quesList)
+        return quesList
     }
 
     override fun toDomain(e: QuestionEntity?): Question {

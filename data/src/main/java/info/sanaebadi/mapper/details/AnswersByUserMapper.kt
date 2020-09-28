@@ -13,13 +13,13 @@ import javax.inject.Singleton
 @Singleton
 class AnswersByUserMapper @Inject constructor() : DataLayerMapper<AnswerEntity, Answer> {
 
-    fun toDomain(answerListEntity: AnswerListEntity): AnswerList? {
+    fun toDomain(answerListEntity: AnswerListEntity): List<Answer>? {
         val answerList: MutableList<Answer> = ArrayList<Answer>()
 
         for (answer: AnswerEntity in answerListEntity.items) {
             answerList.add(toDomain(answer))
         }
-        return AnswerList(answerList)
+        return answerList
     }
 
     override fun toDomain(e: AnswerEntity?): Answer {
