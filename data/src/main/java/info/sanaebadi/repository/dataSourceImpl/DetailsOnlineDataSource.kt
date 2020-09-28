@@ -23,7 +23,7 @@ class DetailsOnlineDataSource :
     }
 
     override fun getQuestionsById(ids: List<Long>, userId: Long): Single<QuestionListEntity> {
-        return getQuestionsById(ids, userId)
+        return service.getQuestionsById(ids.joinToString(separator = ";"))
     }
 
 
