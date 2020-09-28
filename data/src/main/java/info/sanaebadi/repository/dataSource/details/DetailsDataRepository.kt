@@ -1,6 +1,8 @@
 package info.sanaebadi.repository.dataSource.details
 
+import info.sanaebadi.domain.model.user.Answer
 import info.sanaebadi.domain.model.user.AnswerList
+import info.sanaebadi.domain.model.user.Question
 import info.sanaebadi.domain.model.user.QuestionList
 import info.sanaebadi.domain.repository.CacheStrategy
 import info.sanaebadi.domain.repository.DetailsRepository
@@ -19,25 +21,25 @@ class DetailsDataRepository @Inject constructor(
     private val questionByIdMapper: QuestionByIdMapper
 
 ) : DetailsRepository {
-    override fun getQuestionsByUser(userId: Long): Single<QuestionList> {
+    override fun getQuestionsByUser(userId: Long): Single<List<Question>> {
         return detailsDataSourceFactory.create(CacheStrategy.ONLINE_FIRST)
             .getQuestionsByUser(userId)
             .map { data -> questionsByUserMapper.toDomain(data) }
     }
 
-    override fun getAnswersByUser(userId: Long): Single<AnswerList> {
+    override fun getAnswersByUser(userId: Long): Single<List<Answer>> {
         return detailsDataSourceFactory.create(CacheStrategy.ONLINE_FIRST)
             .getAnswersByUser(userId)
             .map { data -> answersByUserMapper.toDomain(data) }
     }
 
-    override fun getFavoritesByUser(userId: Long): Single<QuestionList> {
+    override fun getFavoritesByUser(userId: Long): Single<List<Question>> {
         return detailsDataSourceFactory.create(CacheStrategy.ONLINE_FIRST)
             .getFavoritesByUser(userId)
             .map { data -> favoritesByUserMapper.toDomain(data) }
     }
 
-    override fun getQuestionsById(ids: List<Long>, userId: Long): Single<QuestionList> {
+    override fun getQuestionsById(ids: List<Long>, userId: Long): Single<List<Question>> {
         return detailsDataSourceFactory.create(CacheStrategy.ONLINE_FIRST)
             .getQuestionsById(ids, userId)
             .map { data -> questionByIdMapper.toDomain(data) }
