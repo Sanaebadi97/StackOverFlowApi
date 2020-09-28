@@ -5,8 +5,10 @@ import dagger.Module
 import dagger.Provides
 import info.sanaebadi.domain.executor.PostExecutionThread
 import info.sanaebadi.domain.executor.ThreadExecutor
+import info.sanaebadi.domain.repository.DetailsRepository
 import info.sanaebadi.domain.repository.UserRepository
 import info.sanaebadi.executor.JobExecutor
+import info.sanaebadi.repository.dataSource.details.DetailsDataRepository
 import info.sanaebadi.repository.dataSource.user.UserDataRepository
 import info.sanaebadi.stackoverflowproject.executors.UIThread
 import info.sanaebadi.stackoverflowproject.global.StackApplication
@@ -43,6 +45,12 @@ class ApplicationModule {
     @Singleton
     fun provideUserRepository(userDataRepository: UserDataRepository): UserRepository {
         return userDataRepository
+    }
+
+    @Provides
+    @Singleton
+    fun provideDetailsRepository(detailsDataRepository: DetailsDataRepository): DetailsRepository {
+        return detailsDataRepository
     }
 
 
