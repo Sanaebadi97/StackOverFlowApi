@@ -1,19 +1,25 @@
-package com.example.tamaskozmer.kotlinrxexample.presentation.view.adapters.delegateadapters
+package info.sanaebadi.stackoverflowproject.mvvm.feature.view.delegate
 
-import android.support.v7.widget.RecyclerView
-import android.view.View
+import android.view.LayoutInflater
 import android.view.ViewGroup
-import com.example.tamaskozmer.kotlinrxexample.R
-import com.example.tamaskozmer.kotlinrxexample.util.inflate
-import com.example.tamaskozmer.kotlinrxexample.presentation.view.adapters.ViewType
-import com.example.tamaskozmer.kotlinrxexample.presentation.view.adapters.ViewTypeDelegateAdapter
+import androidx.recyclerview.widget.RecyclerView
+import info.sanaebadi.domain.model.base.ViewType
+import info.sanaebadi.stackoverflowproject.databinding.ListItemLoadingBinding
+import info.sanaebadi.stackoverflowproject.mvvm.feature.view.delegate.base.ViewTypeDelegateAdapter
 
 class LoadingDelegateAdapter : ViewTypeDelegateAdapter {
     override fun onCreateViewHolder(parent: ViewGroup) =
-            LoadingViewHolder(parent.inflate(R.layout.list_item_loading))
+        LoadingViewHolder(
+            ListItemLoadingBinding.inflate(
+                LayoutInflater.from(parent.context),
+                parent,
+                false
+            )
+        )
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, item: ViewType) {
     }
 
-    class LoadingViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView)
+    class LoadingViewHolder(private val binding: ListItemLoadingBinding) :
+        RecyclerView.ViewHolder(binding.root)
 }
