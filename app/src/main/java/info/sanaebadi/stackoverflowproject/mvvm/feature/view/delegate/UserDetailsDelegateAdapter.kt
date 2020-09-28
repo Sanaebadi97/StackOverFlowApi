@@ -1,33 +1,41 @@
 package info.sanaebadi.stackoverflowproject.mvvm.feature.view.delegate
 
 import android.annotation.SuppressLint
-import android.view.View
+import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import info.sanaebadi.domain.model.base.ViewType
-import info.sanaebadi.stackoverflowproject.R
+import info.sanaebadi.domain.model.user.User
+import info.sanaebadi.stackoverflowproject.databinding.ListItemUserDetailsBinding
 import info.sanaebadi.stackoverflowproject.mvvm.feature.view.delegate.base.ViewTypeDelegateAdapter
-import info.sanaebadi.stackoverflowproject.mvvm.feature.view.viewModel.UserViewModel
-import info.sanaebadi.stackoverflowproject.util.inflate
+import info.sanaebadi.stackoverflowproject.util.isLollipopOrAbove
+import info.sanaebadi.stackoverflowproject.util.loadCircleImage
 
 class UserDetailsDelegateAdapter : ViewTypeDelegateAdapter {
 
     override fun onCreateViewHolder(parent: ViewGroup) =
-            UserDetailsViewHolder(parent.inflate(R.layout.list_item_user_details))
+        UserDetailsViewHolder(
+            ListItemUserDetailsBinding.inflate(
+                LayoutInflater.from(parent.context),
+                parent,
+                false
+            )
+        )
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, item: ViewType) {
         holder as UserDetailsViewHolder
-        holder.bind(item as UserViewModel)
+        holder.bind(item as User)
     }
 
-    class UserDetailsViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        @SuppressLint("NewApi")
-        fun bind(user: UserViewModel) = with(itemView) {
-            profileImage.loadUrl(user.profileImage)
-            name.text = user.displayName
-            reputation.text = "${user.reputation} points"
+    class UserDetailsViewHolder(private val binding: ListItemUserDetailsBinding) :
+        RecyclerView.ViewHolder(binding.root) {
+        @SuppressLint("NewApi", "SetTextI18n")
+        fun bind(user: User) = with(itemView) {
+            binding.profileImage.loadCircleImage(user.profileImage)
+            binding.name.text = user.displayName
+            binding.reputation.text = "${user.reputation} points"
 
-            isLollipopOrAbove { profileImage.transitionName = "transition${user.userId}" }
+            isLollipopOrAbove { binding.profileImage.transitionName = "transition${user.userId}" }
         }
     }
 }
