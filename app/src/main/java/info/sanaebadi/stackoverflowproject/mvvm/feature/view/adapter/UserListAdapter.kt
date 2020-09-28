@@ -7,11 +7,13 @@ import androidx.recyclerview.widget.RecyclerView
 import info.sanaebadi.stackoverflowproject.databinding.ListItemUserBinding
 import info.sanaebadi.stackoverflowproject.model.user.UserPresentation
 import info.sanaebadi.stackoverflowproject.util.loadUrl
+import info.sanaebadi.stackoverflowproject.util.onItemClickListener
 
-class UserListAdapter(
+class UserListAdapter (
+    val listener: onItemClickListener,
     private val users: MutableList<UserPresentation>
-
 ) : RecyclerView.Adapter<UserListAdapter.UserViewHolder>() {
+
 
     override fun getItemCount() = users.size
 
@@ -45,6 +47,13 @@ class UserListAdapter(
                 binding.imageUserAvatar.loadUrl(user.profileImage)
 
 
+                setOnClickListener {
+                    listener.onItemClick(it)
+                }
+
+
             }
     }
+
+
 }
