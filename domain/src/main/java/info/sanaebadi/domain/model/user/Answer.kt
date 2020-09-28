@@ -10,7 +10,7 @@ data class Answer(
     var score: Long,
     var accepted: Boolean,
     var ownerEntity: Owner
-) : BaseDomainModel, ViewType {
-    override fun getViewType() = AdapterConstants.ANSWER
-}
+) : BaseDomainModel {
 
+    constructor() : this(-1, -1, 0, false, Owner())
+}

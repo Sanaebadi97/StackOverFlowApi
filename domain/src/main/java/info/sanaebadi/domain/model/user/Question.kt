@@ -1,8 +1,6 @@
 package info.sanaebadi.domain.model.user
 
-import info.sanaebadi.domain.model.base.AdapterConstants
 import info.sanaebadi.domain.model.base.BaseDomainModel
-import info.sanaebadi.domain.model.base.ViewType
 
 
 data class Question(
@@ -12,6 +10,8 @@ data class Question(
     var link: String,
     var questionId: Long,
     var ownerEntity: Owner
-) : BaseDomainModel, ViewType {
-    override fun getViewType(): Int = AdapterConstants.QUESTION
+) : BaseDomainModel {
+
+
+    constructor() : this(0, 0, "", "", -1, Owner())
 }
