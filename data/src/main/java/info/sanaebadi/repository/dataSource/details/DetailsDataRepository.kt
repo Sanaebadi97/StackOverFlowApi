@@ -1,0 +1,3 @@
+package info.sanaebadi.repository.dataSource.details
+
+class DetailsDataRepository
