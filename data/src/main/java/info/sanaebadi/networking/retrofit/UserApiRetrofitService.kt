@@ -20,4 +20,7 @@ interface UserApiRetrofitService {
 
     @GET("users/{userId}/answers?order=desc&sort=votes&site=stackoverflow")
     fun getAnswersByUser(@Path("userId") userId: Long): Single<AnswerListEntity>
+
+    @GET("questions/{questionIds}?order=desc&sort=activity&site=stackoverflow")
+    fun getQuestionsById(@Path("questionIds") questionId: String): Single<QuestionListEntity>
 }
