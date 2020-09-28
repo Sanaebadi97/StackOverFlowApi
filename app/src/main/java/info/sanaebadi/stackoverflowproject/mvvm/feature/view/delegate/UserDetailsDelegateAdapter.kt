@@ -1,17 +1,14 @@
-package com.example.tamaskozmer.kotlinrxexample.presentation.view.adapters.delegateadapters
+package info.sanaebadi.stackoverflowproject.mvvm.feature.view.delegate
 
 import android.annotation.SuppressLint
-import android.support.v7.widget.RecyclerView
 import android.view.View
 import android.view.ViewGroup
-import com.example.tamaskozmer.kotlinrxexample.R
-import com.example.tamaskozmer.kotlinrxexample.presentation.view.viewmodels.UserViewModel
-import com.example.tamaskozmer.kotlinrxexample.util.inflate
-import com.example.tamaskozmer.kotlinrxexample.util.isLollipopOrAbove
-import com.example.tamaskozmer.kotlinrxexample.util.loadUrl
-import com.example.tamaskozmer.kotlinrxexample.presentation.view.adapters.ViewType
-import com.example.tamaskozmer.kotlinrxexample.presentation.view.adapters.ViewTypeDelegateAdapter
-import kotlinx.android.synthetic.main.list_item_user_details.view.*
+import androidx.recyclerview.widget.RecyclerView
+import info.sanaebadi.domain.model.base.ViewType
+import info.sanaebadi.stackoverflowproject.R
+import info.sanaebadi.stackoverflowproject.mvvm.feature.view.delegate.base.ViewTypeDelegateAdapter
+import info.sanaebadi.stackoverflowproject.mvvm.feature.view.viewModel.UserViewModel
+import info.sanaebadi.stackoverflowproject.util.inflate
 
 class UserDetailsDelegateAdapter : ViewTypeDelegateAdapter {
 

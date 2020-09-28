@@ -1,18 +1,18 @@
-package com.example.tamaskozmer.kotlinrxexample.presentation.view.adapters.delegateadapters
+package info.sanaebadi.stackoverflowproject.mvvm.feature.view.delegate
 
 import android.support.v7.widget.RecyclerView
 import android.view.View
 import android.view.ViewGroup
-import com.example.tamaskozmer.kotlinrxexample.R
-import com.example.tamaskozmer.kotlinrxexample.presentation.view.viewmodels.QuestionViewModel
-import com.example.tamaskozmer.kotlinrxexample.util.inflate
-import com.example.tamaskozmer.kotlinrxexample.presentation.view.adapters.ViewType
-import com.example.tamaskozmer.kotlinrxexample.presentation.view.adapters.ViewTypeDelegateAdapter
-import kotlinx.android.synthetic.main.list_item_question.view.*
+import androidx.recyclerview.widget.RecyclerView
+import info.sanaebadi.domain.model.base.ViewType
+import info.sanaebadi.domain.model.details.QuestionViewModel
+import info.sanaebadi.stackoverflowproject.R
+import info.sanaebadi.stackoverflowproject.mvvm.feature.view.delegate.base.ViewTypeDelegateAdapter
+import info.sanaebadi.stackoverflowproject.util.inflate
 
 class QuestionDelegateAdapter(private val listener: (String) -> Unit) : ViewTypeDelegateAdapter {
     override fun onCreateViewHolder(parent: ViewGroup) =
-            QuestionViewHolder(parent.inflate(R.layout.list_item_question))
+        QuestionViewHolder(parent.inflate(R.layout.list_item_question))
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, item: ViewType) {
         holder as QuestionViewHolder
