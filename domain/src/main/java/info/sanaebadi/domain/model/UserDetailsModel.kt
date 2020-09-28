@@ -1,14 +1,14 @@
 package info.sanaebadi.domain.model
 
 import info.sanaebadi.domain.model.base.ViewType
-import info.sanaebadi.domain.model.details.AnswerViewModel
-import info.sanaebadi.domain.model.details.QuestionViewModel
+import info.sanaebadi.domain.model.user.Answer
+import info.sanaebadi.domain.model.user.Question
 
 data class UserDetailsModel(
-    val questions: List<QuestionViewModel>,
-    val answers: List<AnswerViewModel>,
-    val favorites: List<QuestionViewModel>
-): ViewType {
+    val questions: List<Question>,
+    val answers: List<Answer>,
+    val favorites: List<Question>
+) : ViewType {
     override fun getViewType(): Int {
         TODO("Not yet implemented")
     }
