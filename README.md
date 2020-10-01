@@ -1,6 +1,15 @@
 # StackOverFlowApi
 
 
+## Architecture and pattern:
+
+- Clean Architecture
+
+- MVVM
+
+------
+
+
 ## The components used in this repository :
 
 - RX 
