@@ -85,7 +85,6 @@ https://api.stackexchange.com/
 **QuestionByUser** ::  users/{userId}/questions?order=desc&sort=votes&site=stackoverflow
 
 
-**FavoritesByUser** ::  users/{userId}/favorites?order=desc&sort=votes&site=stackoverflow
   
   
 
