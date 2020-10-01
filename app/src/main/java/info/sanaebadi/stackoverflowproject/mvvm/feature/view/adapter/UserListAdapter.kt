@@ -6,6 +6,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import info.sanaebadi.stackoverflowproject.databinding.ListItemUserBinding
 import info.sanaebadi.stackoverflowproject.model.user.UserPresentation
+import info.sanaebadi.stackoverflowproject.util.isLollipopOrAbove
 import info.sanaebadi.stackoverflowproject.util.loadUrl
 import info.sanaebadi.stackoverflowproject.util.mOnItemClickListener
 
@@ -48,7 +49,11 @@ class UserListAdapter(
                 binding.imageUserAvatar.loadUrl(user.profileImage)
 
                 setOnClickListener {
-                    listener.onItemClick(adapterPosition)
+                    listener.onItemClick(user, binding.imageUserAvatar)
+                }
+
+                isLollipopOrAbove {
+                    binding.imageUserAvatar.transitionName = "transition${user.userId}"
                 }
 
             }

@@ -42,6 +42,8 @@ class DetailsFragment : DaggerFragment(), DetailView {
         }
     }
 
+    var transitionEnded = false
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -90,7 +92,9 @@ class DetailsFragment : DaggerFragment(), DetailView {
             addItemsWithHeading(details.questions, "Top questions by user")
             addItemsWithHeading(details.answers, "Top answers by user")
             addItemsWithHeading(details.favorites, "Favorited by user")
-            notifyDataSetChanged()
+            if (transitionEnded) {
+                notifyDataSetChanged()
+            }
         }
     }
 
@@ -107,4 +111,11 @@ class DetailsFragment : DaggerFragment(), DetailView {
         swipeRefreshLayout.isRefreshing = false
     }
 
+    // This logic is needed to show the content only after the shared transition has finished
+    fun transitionEnded() {
+        transitionEnded = true
+        if (isAdded) {
+            binding?.recyclerUserDetails?.adapter?.notifyDataSetChanged()
+        }
+    }
 }

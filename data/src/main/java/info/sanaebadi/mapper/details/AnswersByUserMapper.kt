@@ -23,7 +23,10 @@ class AnswersByUserMapper @Inject constructor() : DataLayerMapper<AnswerEntity, 
     }
 
     override fun toDomain(e: AnswerEntity?): Answer {
-        return Answer(e?.answerId!!, e.questionId, e.score, e.accepted, ownerEntity = Owner())
+
+        val owner = e?.ownerEntity?.userId?.let { Owner(it) }
+
+        return Answer(e?.answerId!!, e.questionId, e.score, e.accepted, owner!!)
     }
 
     override fun toEntity(d: Answer?): AnswerEntity? {

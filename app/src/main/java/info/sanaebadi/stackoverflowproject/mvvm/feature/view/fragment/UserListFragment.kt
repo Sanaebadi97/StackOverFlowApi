@@ -15,6 +15,7 @@ import dagger.android.support.DaggerFragment
 import info.sanaebadi.stackoverflowproject.R
 import info.sanaebadi.stackoverflowproject.databinding.FragmentUserListBinding
 import info.sanaebadi.stackoverflowproject.model.user.UserPresentation
+import info.sanaebadi.stackoverflowproject.mvvm.feature.view.MainActivity
 import info.sanaebadi.stackoverflowproject.mvvm.feature.view.adapter.UserListAdapter
 import info.sanaebadi.stackoverflowproject.mvvm.feature.view.viewModel.UserViewModel
 import info.sanaebadi.stackoverflowproject.mvvm.feature.view.viewModel.base.UserListView
@@ -49,7 +50,7 @@ class UserListFragment : DaggerFragment(), UserListView, mOnItemClickListener {
 
         setUpObserver()
 
-        navController = Navigation.findNavController(view)
+//        navController = Navigation.findNavController(view)
 
     }
 
@@ -144,14 +145,18 @@ class UserListFragment : DaggerFragment(), UserListView, mOnItemClickListener {
         //  adapter.clearUsers()
     }
 
-    override fun onItemClick(position: Int) {
-        open
-//        navController!!.navigate(R.id.action_userListFragment_to_detailsFragment)
+
+    override fun onItemClick(userViewModel: UserPresentation, view: View) {
+        openDetailFragment(userViewModel, view)
     }
 
-
-    private fun openDetailFragment(user: UserViewModel, transitioningView: View) {
+    private fun openDetailFragment(user: UserPresentation, transitioningView: View) {
         val detailsFragment = DetailsFragment.newInstance(user)
-        (activity as MainActivity).addDetailsFragmentWithTransition(detailsFragment, transitioningView)
+        (activity as MainActivity).addDetailsFragmentWithTransition(
+            detailsFragment,
+            transitioningView
+        )
     }
+
+
 }
