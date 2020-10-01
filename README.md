@@ -1,34 +1,29 @@
 # StackOverFlowApi
 
-apis
 
+The Rest Api :
 
-
-
+BASE URLS :  
 https://api.stackexchange.com/
 
 
 
+QuestionsById = > questions/{questionIds}?order=desc&sort=activity&site=stackoverflow
+
+
+User = > users?order=desc&sort=reputation&site=stackoverflow
+
+
+QuestionByUser=> users/{userId}/questions?order=desc&sort=votes&site=stackoverflow
+
+
+FavoritesByUser => users/{userId}/favorites?order=desc&sort=votes&site=stackoverflow
+  
+  
+AnswersByUser = >  users/{userId}/answers?order=desc&sort=votes&site=stackoverflow
 
 
 
-
-BASE_URL = "https://api.stackexchange.com/2.2/"
-
-
-"/questions/{questionIds}?order=desc&sort=activity&site=stackoverflow -> getQuestionsById
-
-
-"/users?order=desc&sort=reputation&site=stackoverflow" ->get users
-
-
-/users/{userId}/questions?order=desc&sort=votes&site=stackoverflow ->get questionByUser
-
-
-/users/{userId}/favorites?order=desc&sort=votes&site=stackoverflow ->getFavoritesByUser
-
-
-/users/{userId}/answers?order=desc&sort=votes&site=stackoverflow" ->getAnswersByUser
 
 
 
