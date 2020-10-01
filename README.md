@@ -82,7 +82,7 @@ https://api.stackexchange.com/
 **User** :: users?order=desc&sort=reputation&site=stackoverflow
 
 
-**QuestionByUser** ::  users/{userId}/questions?order=desc&sort=votes&site=stackoverflow
+
 
 
   
