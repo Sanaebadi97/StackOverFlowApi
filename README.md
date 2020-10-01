@@ -1,5 +1,16 @@
 # StackOverFlowApi
 
+## Programming language :
+
+**kotlin**
+
+
+
+-----
+
+
+
+
 
 ## Architecture and pattern:
 
@@ -7,7 +18,12 @@
 
 - MVVM
 
+
+
 ------
+
+
+
 
 
 ## The components used in this repository :
@@ -29,6 +45,12 @@
 - Material Design
 
 - ...
+
+
+
+------
+
+
 
 
 The Rest Api :
