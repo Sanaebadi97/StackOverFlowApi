@@ -1,6 +1,27 @@
 # StackOverFlowApi
 
 
+## The components used in this repository :
+
+- RX 
+
+- Retrofit
+
+- OKhttp3
+
+- ViewModel
+
+- LiveData
+
+- Navigation Component
+
+- RecyclerView
+
+- Material Design
+
+- ...
+
+
 The Rest Api :
 
 BASE URLS :  
