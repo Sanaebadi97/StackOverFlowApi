@@ -7,8 +7,6 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import androidx.navigation.NavController
-import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import dagger.android.support.DaggerFragment
@@ -19,12 +17,13 @@ import info.sanaebadi.stackoverflowproject.mvvm.feature.view.MainActivity
 import info.sanaebadi.stackoverflowproject.mvvm.feature.view.adapter.UserListAdapter
 import info.sanaebadi.stackoverflowproject.mvvm.feature.view.viewModel.UserViewModel
 import info.sanaebadi.stackoverflowproject.mvvm.feature.view.viewModel.base.UserListView
+import info.sanaebadi.stackoverflowproject.util.ConnectionHelper
 import info.sanaebadi.stackoverflowproject.util.mOnItemClickListener
 import javax.inject.Inject
 
 class UserListFragment : DaggerFragment(), UserListView, mOnItemClickListener {
 
-    private var navController: NavController? = null
+    private lateinit var adapter: UserListAdapter
 
 
     @Inject
@@ -34,6 +33,7 @@ class UserListFragment : DaggerFragment(), UserListView, mOnItemClickListener {
     private val viewModel: UserViewModel by lazy {
         ViewModelProvider(requireActivity(), viewModelFactory).get(UserViewModel::class.java)
     }
+
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -46,11 +46,16 @@ class UserListFragment : DaggerFragment(), UserListView, mOnItemClickListener {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        viewModel.getUserList(1)
+
+        val connectionHelper = activity?.let { ConnectionHelper(it) }
+        if (connectionHelper!!.isOnline()) {
+            viewModel.getUserList(1)
+        } else {
+            showError(getString(R.string.check_internet))
+        }
 
         setUpObserver()
 
-//        navController = Navigation.findNavController(view)
 
     }
 
@@ -74,7 +79,7 @@ class UserListFragment : DaggerFragment(), UserListView, mOnItemClickListener {
 
     private fun initAdapter(data: MutableList<UserPresentation>) {
         setUpRecyclerview()
-        val adapter = UserListAdapter(this, data)
+        adapter = UserListAdapter(this, data)
         binding?.recyclerUser?.adapter = adapter
 
 
@@ -142,7 +147,11 @@ class UserListFragment : DaggerFragment(), UserListView, mOnItemClickListener {
         Toast.makeText(context, getString(R.string.error_fetching_data), Toast.LENGTH_SHORT).show()
 
     override fun clearList() {
-        //  adapter.clearUsers()
+        adapter.clearUsers()
+    }
+
+    private fun showError(message: String) {
+        Toast.makeText(context, message, Toast.LENGTH_SHORT).show()
     }
 
 
@@ -157,6 +166,5 @@ class UserListFragment : DaggerFragment(), UserListView, mOnItemClickListener {
             transitioningView
         )
     }
-
 
 }
