@@ -2,10 +2,7 @@
 
 
 ## ScreenShots :
-
-
 ![Frame 1](https://user-images.githubusercontent.com/26750131/94846433-ff685880-042d-11eb-9e75-2bf1e12ae6d9.png)
-
 
 ----
 
