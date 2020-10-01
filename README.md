@@ -70,9 +70,7 @@
 
 ## The Rest Api :
 
-**BASE URL :**  
-
-https://api.stackexchange.com/
+**BASE URL :** :point_right: https://api.stackexchange.com/
 
 
 ---
