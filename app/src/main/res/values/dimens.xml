@@ -20,9 +20,10 @@
     <dimen name="text_size_medium">16sp</dimen>
     <dimen name="text_size_large">18sp</dimen>
     <dimen name="text_size_very_large">20sp</dimen>
-    <dimen name="text_size_huge">20sp</dimen>default_margin_half
+    <dimen name="text_size_huge">20sp</dimen>
     <dimen name="text_size_middle_huge">24sp</dimen>
     <dimen name="text_size_very_huge">28sp</dimen>
-    <dimen name="icon_size">50dp</dimen>
+    <dimen name="icon_size">64dp</dimen>
+    <dimen name="image_size">128dp</dimen>
 
 </resources>

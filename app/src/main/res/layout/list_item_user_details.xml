@@ -1,34 +1,46 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical">
 
-    <ImageView
+    <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/profileImage"
-        android:layout_width="128dp"
-        android:layout_height="128dp"
+        android:layout_width="@dimen/image_size"
+        android:layout_height="@dimen/image_size"
         android:layout_gravity="center"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="@dimen/default_margin"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
         tools:src="@mipmap/ic_launcher" />
 
-    <TextView
-        android:id="@+id/name"
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/text_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginTop="16dp"
-        android:textSize="20sp"
+        android:layout_marginTop="@dimen/default_margin"
+        android:fontFamily="@font/font_bold"
+        android:textSize="@dimen/text_size_very_large"
+        app:layout_constraintEnd_toEndOf="@id/profileImage"
+        app:layout_constraintStart_toStartOf="@id/profileImage"
+        app:layout_constraintTop_toBottomOf="@+id/profileImage"
         tools:text="UserName" />
 
-    <TextView
-        android:id="@+id/reputation"
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/text_reputation"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginBottom="16dp"
-        android:layout_marginTop="16dp"
-        android:textSize="20sp"
+        android:layout_marginTop="@dimen/default_margin"
+        android:layout_marginBottom="@dimen/default_margin"
+        android:fontFamily="@font/font_regular"
+        android:textSize="@dimen/text_size_very_large"
+        app:layout_constraintEnd_toEndOf="@id/text_name"
+        app:layout_constraintStart_toStartOf="@id/text_name"
+        app:layout_constraintTop_toBottomOf="@id/text_name"
         tools:text="123456 points" />
-</LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -33,8 +33,8 @@ class UserDetailsDelegateAdapter : ViewTypeDelegateAdapter {
         @SuppressLint("NewApi", "SetTextI18n")
         fun bind(user: UserPresentation) = with(itemView) {
             binding.profileImage.loadCircleImage(user.profileImage)
-            binding.name.text = user.displayName
-            binding.reputation.text = "${user.reputation} points"
+            binding.textName.text = user.displayName
+            binding.textReputation.text = "${user.reputation} points"
 
             isLollipopOrAbove { binding.profileImage.transitionName = "transition${user.userId}" }
         }
