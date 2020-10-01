@@ -76,8 +76,6 @@ https://api.stackexchange.com/
 
 
 
-**QuestionsById** ::  questions/{questionIds}?order=desc&sort=activity&site=stackoverflow
-
 
 
 
