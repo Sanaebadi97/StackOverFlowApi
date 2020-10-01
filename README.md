@@ -29,7 +29,7 @@
 
 ## Architecture and pattern:
 
-- Clean Architecture
+- Clean Architecture  :imp:
 
 - MVVM
 
