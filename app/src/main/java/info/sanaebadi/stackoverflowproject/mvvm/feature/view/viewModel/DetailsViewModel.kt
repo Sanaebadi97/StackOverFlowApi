@@ -18,9 +18,9 @@ class DetailsViewModel @Inject constructor(
         detailsUseCase.execute(id)
             .subscribeOn(schedulerProvider.ioScheduler())
             .observeOn(schedulerProvider.uiScheduler())
-            .subscribe({ placeData ->
+            .subscribe({ details ->
                 view?.hideLoading()
-                view?.showDetails(placeData)
+                view?.showDetails(details)
             },
                 { error ->
                     view?.hideLoading()

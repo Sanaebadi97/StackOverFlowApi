@@ -2,7 +2,6 @@ package info.sanaebadi.mapper.details
 
 import info.sanaebadi.domain.model.user.Owner
 import info.sanaebadi.domain.model.user.Question
-import info.sanaebadi.domain.model.user.QuestionList
 import info.sanaebadi.entity.user.QuestionEntity
 import info.sanaebadi.entity.user.QuestionListEntity
 import info.sanaebadi.mapper.base.DataLayerMapper
@@ -23,13 +22,16 @@ class QuestionsByUserMapper @Inject constructor() : DataLayerMapper<QuestionEnti
     }
 
     override fun toDomain(e: QuestionEntity?): Question {
+        val owner = e?.ownerEntity?.userId?.let { Owner(it) }
+
         return Question(
             e?.viewCount!!,
             e.score,
             e.title,
             e.link,
             e.questionId,
-            ownerEntity = Owner()
+            owner!!
+
         )
     }
 

@@ -7,24 +7,25 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.NavController
+import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import dagger.android.support.DaggerFragment
 import info.sanaebadi.stackoverflowproject.R
 import info.sanaebadi.stackoverflowproject.databinding.FragmentUserListBinding
 import info.sanaebadi.stackoverflowproject.model.user.UserPresentation
+import info.sanaebadi.stackoverflowproject.mvvm.feature.view.MainActivity
 import info.sanaebadi.stackoverflowproject.mvvm.feature.view.adapter.UserListAdapter
 import info.sanaebadi.stackoverflowproject.mvvm.feature.view.viewModel.UserViewModel
 import info.sanaebadi.stackoverflowproject.mvvm.feature.view.viewModel.base.UserListView
+import info.sanaebadi.stackoverflowproject.util.mOnItemClickListener
 import javax.inject.Inject
 
-class UserListFragment : DaggerFragment(), UserListView {
+class UserListFragment : DaggerFragment(), UserListView, mOnItemClickListener {
 
-    companion object {
-        const val TAG: String = "UserListFragment"
-    }
+    private var navController: NavController? = null
 
-    private lateinit var layoutManager: LinearLayoutManager
 
     @Inject
     lateinit var viewModelFactory: ViewModelProvider.Factory
@@ -49,6 +50,8 @@ class UserListFragment : DaggerFragment(), UserListView {
 
         setUpObserver()
 
+//        navController = Navigation.findNavController(view)
+
     }
 
     private fun setUpRecyclerview() {
@@ -71,7 +74,7 @@ class UserListFragment : DaggerFragment(), UserListView {
 
     private fun initAdapter(data: MutableList<UserPresentation>) {
         setUpRecyclerview()
-        val adapter = UserListAdapter(data)
+        val adapter = UserListAdapter(this, data)
         binding?.recyclerUser?.adapter = adapter
 
 
@@ -142,10 +145,18 @@ class UserListFragment : DaggerFragment(), UserListView {
         //  adapter.clearUsers()
     }
 
-    private fun openDetailFragment() {
-//        val detailsFragment = DetailsFragment.newInstance(user)
-//        (activity as MainActivity).addDetailsFragmentWithTransition(detailsFragment, transitioningView)
-        Toast.makeText(context, getString(R.string.error_fetching_data), Toast.LENGTH_SHORT).show()
 
+    override fun onItemClick(userViewModel: UserPresentation, view: View) {
+        openDetailFragment(userViewModel, view)
     }
+
+    private fun openDetailFragment(user: UserPresentation, transitioningView: View) {
+        val detailsFragment = DetailsFragment.newInstance(user)
+        (activity as MainActivity).addDetailsFragmentWithTransition(
+            detailsFragment,
+            transitioningView
+        )
+    }
+
+
 }
