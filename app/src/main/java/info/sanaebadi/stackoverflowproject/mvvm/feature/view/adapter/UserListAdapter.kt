@@ -7,10 +7,10 @@ import androidx.recyclerview.widget.RecyclerView
 import info.sanaebadi.stackoverflowproject.databinding.ListItemUserBinding
 import info.sanaebadi.stackoverflowproject.model.user.UserPresentation
 import info.sanaebadi.stackoverflowproject.util.loadUrl
-import info.sanaebadi.stackoverflowproject.util.onItemClickListener
+import info.sanaebadi.stackoverflowproject.util.mOnItemClickListener
 
-class UserListAdapter (
-    val listener: onItemClickListener,
+class UserListAdapter(
+    val listener: mOnItemClickListener,
     private val users: MutableList<UserPresentation>
 ) : RecyclerView.Adapter<UserListAdapter.UserViewHolder>() {
 
@@ -19,6 +19,7 @@ class UserListAdapter (
 
     override fun onBindViewHolder(holder: UserViewHolder, position: Int) =
         holder.bind(users[position])
+
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): UserViewHolder {
         val binding =
@@ -36,7 +37,7 @@ class UserListAdapter (
         users.clear()
     }
 
-    open class UserViewHolder(private val binding: ListItemUserBinding) :
+    inner class UserViewHolder(private val binding: ListItemUserBinding) :
         RecyclerView.ViewHolder(binding.root) {
         @SuppressLint("NewApi", "SetTextI18n")
         fun bind(user: UserPresentation) =
@@ -46,13 +47,12 @@ class UserListAdapter (
                 binding.textUserReputation.text = "${user.reputation} points"
                 binding.imageUserAvatar.loadUrl(user.profileImage)
 
-
                 setOnClickListener {
-                    listener.onItemClick(it)
+                    listener.onItemClick(adapterPosition)
                 }
 
-
             }
+
     }
 
 

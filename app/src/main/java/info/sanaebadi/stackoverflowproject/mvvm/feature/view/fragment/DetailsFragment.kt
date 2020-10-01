@@ -7,16 +7,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.navigation.NavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import dagger.android.support.DaggerFragment
 import info.sanaebadi.domain.model.UserDetailsModel
-import info.sanaebadi.domain.model.user.UserListModel
 import info.sanaebadi.stackoverflowproject.databinding.FragmentDetailsBinding
 import info.sanaebadi.stackoverflowproject.model.user.UserPresentation
 import info.sanaebadi.stackoverflowproject.mvvm.feature.view.adapter.DetailsAdapter
 import info.sanaebadi.stackoverflowproject.mvvm.feature.view.viewModel.DetailsViewModel
-import info.sanaebadi.stackoverflowproject.mvvm.feature.view.viewModel.UserViewModel
 import info.sanaebadi.stackoverflowproject.mvvm.feature.view.viewModel.base.DetailView
 import kotlinx.android.synthetic.main.fragment_details.*
 import javax.inject.Inject
@@ -24,11 +21,16 @@ import javax.inject.Inject
 class DetailsFragment : DaggerFragment(), DetailView {
 
     companion object {
-        const val TAG: String = "DetailsFragment"
+        fun newInstance(user: UserPresentation): DetailsFragment {
+            val fragment = DetailsFragment()
+            val args = Bundle()
+            args.putParcelable("user", user)
+            fragment.arguments = args
+            return fragment
+        }
     }
 
     private var binding: FragmentDetailsBinding? = null
-    private var navController: NavController? = null
 
     @Inject
     lateinit var viewModel: DetailsViewModel

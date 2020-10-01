@@ -1,5 +1,5 @@
 package info.sanaebadi.stackoverflowproject.util
 
-interface onItemClickListener {
+interface mOnItemClickListener {
     fun onItemClick(position:Int)
 }

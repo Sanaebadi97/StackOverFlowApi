@@ -2,7 +2,6 @@ package info.sanaebadi.mapper.details
 
 import info.sanaebadi.domain.model.user.Owner
 import info.sanaebadi.domain.model.user.Question
-import info.sanaebadi.domain.model.user.QuestionList
 import info.sanaebadi.entity.user.QuestionEntity
 import info.sanaebadi.entity.user.QuestionListEntity
 import info.sanaebadi.mapper.base.DataLayerMapper
