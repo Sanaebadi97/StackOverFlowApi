@@ -21,6 +21,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/default_margin"
+        android:textColor="@color/primaryTextColor"
         android:layout_marginEnd="@dimen/default_margin"
         android:layout_marginBottom="@dimen/default_margin_half"
         android:fontFamily="@font/font_bold"
@@ -34,12 +35,13 @@
         android:id="@+id/text_user_reputation"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:textColor="@color/secondaryTextColor"
         android:layout_marginStart="@dimen/default_margin"
         android:layout_marginEnd="@dimen/default_margin"
         android:fontFamily="@font/font_regular"
         android:textSize="@dimen/text_size_medium"
+        app:layout_constraintStart_toEndOf="@id/image_user_avatar"
         app:layout_constraintBottom_toBottomOf="@id/image_user_avatar"
-        app:layout_constraintEnd_toEndOf="@id/text_user_name"
         app:layout_constraintTop_toBottomOf="@id/text_user_name"
         tools:text="123" />
 
