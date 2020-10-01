@@ -64,7 +64,7 @@ https://api.stackexchange.com/
 **QuestionsById** ::  questions/{questionIds}?order=desc&sort=activity&site=stackoverflow
 
 
-User = > users?order=desc&sort=reputation&site=stackoverflow
+**User** :: users?order=desc&sort=reputation&site=stackoverflow
 
 
 QuestionByUser=> users/{userId}/questions?order=desc&sort=votes&site=stackoverflow
