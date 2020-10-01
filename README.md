@@ -77,7 +77,7 @@ AnswersByUser = >  users/{userId}/answers?order=desc&sort=votes&site=stackoverfl
 
 
 
-Stack Exchange API v2.2
+(Stack Exchange API v2.2)[https://api.stackexchange.com/]
 
 
 
