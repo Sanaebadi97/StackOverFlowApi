@@ -27,12 +27,13 @@
 
 
 
-## Architecture and pattern:
+## Architecture and patterns:
 
 - Clean Architecture  :imp:
 
 - MVVM
 
+- ...
 
 
 ------
