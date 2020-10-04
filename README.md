@@ -25,8 +25,6 @@
 
 
 
-
-
 ## Architecture and patterns:
 
 - Clean Architecture  :imp:
