@@ -17,7 +17,7 @@ import info.sanaebadi.stackoverflowproject.mvvm.feature.view.MainActivity
 import info.sanaebadi.stackoverflowproject.mvvm.feature.view.adapter.UserListAdapter
 import info.sanaebadi.stackoverflowproject.mvvm.feature.view.viewModel.UserViewModel
 import info.sanaebadi.stackoverflowproject.mvvm.feature.view.viewModel.base.UserListView
-import info.sanaebadi.stackoverflowproject.util.ConnectionHelper
+import info.sanaebadi.stackoverflowproject.util.isOnline
 import info.sanaebadi.stackoverflowproject.util.mOnItemClickListener
 import javax.inject.Inject
 
@@ -47,16 +47,9 @@ class UserListFragment : DaggerFragment(), UserListView, mOnItemClickListener {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val connectionHelper = activity?.let { ConnectionHelper(it) }
-        if (connectionHelper!!.isOnline()) {
-            viewModel.getUserList(1)
-        } else {
-            showError(getString(R.string.check_internet))
-        }
+        if (requireContext().isOnline()) viewModel.getUserList(1) else showError(getString(R.string.check_internet))
 
         setUpObserver()
-
-
     }
 
     private fun setUpRecyclerview() {

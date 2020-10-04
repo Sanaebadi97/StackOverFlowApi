@@ -13,7 +13,6 @@ import info.sanaebadi.repository.dataSource.user.UserDataRepository
 import info.sanaebadi.stackoverflowproject.executors.UIThread
 import info.sanaebadi.stackoverflowproject.global.StackApplication
 import info.sanaebadi.stackoverflowproject.util.AppSchedulerProvider
-import info.sanaebadi.stackoverflowproject.util.ConnectionHelper
 import info.sanaebadi.stackoverflowproject.util.PreferencesHelper
 import info.sanaebadi.stackoverflowproject.util.SchedulerProvider
 import javax.inject.Singleton
@@ -52,11 +51,6 @@ class ApplicationModule {
     fun provideDetailsRepository(detailsDataRepository: DetailsDataRepository): DetailsRepository {
         return detailsDataRepository
     }
-
-
-    @Provides
-    @Singleton
-    fun provideConnectionHelper(context: Context) = ConnectionHelper(context)
 
     @Provides
     @Singleton

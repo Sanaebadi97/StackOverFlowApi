@@ -82,9 +82,11 @@ class MainActivity : AppCompatActivity() {
         currentFragment?.reenterTransition = userListReenterTransition
 
         // Apply the transitions for the new fragment
-        fragment.sharedElementEnterTransition = sharedTransition
-        fragment.enterTransition = detailFragmentEnterTransition
-        fragment.returnTransition = fade
+        with(fragment) {
+            sharedElementEnterTransition = sharedTransition
+            enterTransition = detailFragmentEnterTransition
+            returnTransition = fade
+        }
 
         // Add the shared elements to the FragmentTransaction (We can add more elements)
         transaction?.addSharedElement(transitioningView, transitioningView.transitionName)
