@@ -1,6 +1,9 @@
 package info.sanaebadi.stackoverflowproject.util
 
 import android.app.Activity
+import android.content.Context
+import android.content.Context.CONNECTIVITY_SERVICE
+import android.net.ConnectivityManager
 import android.os.Build
 import android.view.LayoutInflater
 import android.view.View
@@ -38,3 +41,6 @@ val Activity.placeApplication: StackApplication
 
 val Fragment.placeApplication: StackApplication
     get() = activity?.application as StackApplication
+
+fun Context.isOnline() = (getSystemService(CONNECTIVITY_SERVICE) as ConnectivityManager?)
+    ?.activeNetworkInfo?.isConnectedOrConnecting ?: false

@@ -21,12 +21,8 @@ import javax.inject.Inject
 class DetailsFragment : DaggerFragment(), DetailView {
 
     companion object {
-        fun newInstance(user: UserPresentation): DetailsFragment {
-            val fragment = DetailsFragment()
-            val args = Bundle()
-            args.putParcelable("user", user)
-            fragment.arguments = args
-            return fragment
+        fun newInstance(user: UserPresentation) = DetailsFragment().apply {
+            arguments = Bundle().apply { putParcelable("user", user) }
         }
     }
 
